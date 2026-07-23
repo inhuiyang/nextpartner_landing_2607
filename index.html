@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextPartner | 경력을, 다시 발견하다</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            950: '#08091E',
+            900: '#0D0F2C',
+            800: '#151838',
+            700: '#1D2150',
+            600: '#2B2F63',
+            400: '#6669A0',
+            300: '#9497C4',
+          },
+          indigo: {
+            50: '#EBF4FF',
+            100: '#D6E8FF',
+            200: '#B3D4FF',
+            300: '#8FBFFF',
+            400: '#78B2FF',
+            500: '#62A6FF',
+            600: '#338BFF',
+            700: '#006EFF',
+          },
+          grey: {
+            50: '#F7F7FB',
+            100: '#EFF0F7',
+            200: '#E2E3EF',
+            400: '#9B9EC0',
+            600: '#585B7E',
+            900: '#14151F',
+          },
+          sky: {
+            50: '#EBF4FF',
+            100: '#D6E8FF',
+            200: '#B3D4FF',
+            300: '#8FBFFF',
+            500: '#62A6FF',
+            700: '#006EFF',
+          },
+        },
+        fontFamily: {
+          sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        },
+        fontSize: {
+          'huge': ['4.75rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+          'h1': ['3rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
+          'h2': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.015em' }],
+          'h3': ['1.5rem', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
+          'lead': ['1.25rem', { lineHeight: '1.6', letterSpacing: '-0.005em' }],
+        },
+        boxShadow: {
+          'card': '0 1px 2px rgba(13,15,44,0.04), 0 8px 24px -6px rgba(13,15,44,0.10)',
+          'card-lg': '0 4px 10px rgba(13,15,44,0.06), 0 24px 48px -14px rgba(13,15,44,0.16)',
+          'indigo': '0 10px 24px -6px rgba(98,166,255,0.4)',
+          'indigo-lg': '0 16px 36px -8px rgba(98,166,255,0.45)',
+        },
+      },
+    },
+  }
+</script>
+<style>
+  :root {
+    --dur-fast: 220ms;
+    --dur-normal: 400ms;
+    --dur-reveal: 600ms;
+    --dur-emphasis: 850ms;
+    --ease-out: ease-out;
+    --ease-emphasis: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  @media (min-width: 1440px) {
+    html { font-size: calc(0.6rem + 0.5vw); }
+  }
+  * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { background: #FFFFFF; }
+
+  .page-wash-top {
+    background: linear-gradient(160deg, #EBF4FF 0%, #FFFFFF 45%, #D6E8FF 100%);
+  }
+  .page-wash-bottom {
+    background: linear-gradient(200deg, #D6E8FF 0%, #FFFFFF 45%, #EBF4FF 100%);
+  }
+
+  #story-wrap {
+    position: relative;
+    height: 220vh;
+  }
+  #story-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  #story-frame {
+    position: relative;
+    overflow: hidden;
+    will-change: width, height, border-radius;
+    box-shadow: 0 4px 10px rgba(13,15,44,0.06), 0 24px 48px -14px rgba(13,15,44,0.18);
+  }
+  #story-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .btn-primary {
+    background: #62A6FF;
+    color: #0D0F2C;
+    transition-property: transform, box-shadow, background-color;
+    transition-duration: var(--dur-fast);
+    transition-timing-function: var(--ease-out);
+  }
+  .btn-primary:hover { background: #338BFF; transform: translateY(-2px) scale(1.01); box-shadow: 0 16px 36px -8px rgba(98,166,255,0.45); }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #62A6FF; }
+  .btn-primary:active { transform: translateY(0) scale(0.98); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .btn-outline {
+    background: transparent;
+    color: #14151F;
+    border: 1px solid #E2E3EF;
+    transition-property: transform, background-color, border-color;
+    transition-duration: var(--dur-fast);
+    transition-timing-function: var(--ease-out);
+  }
+  .btn-outline:hover { background: #F7F7FB; border-color: #B3D4FF; transform: translateY(-1px) scale(1.01); }
+  .btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #B3D4FF; }
+  .btn-outline:active { transform: translateY(0); }
+
+  .nav-link { position: relative; color: #585B7E; transition: color var(--dur-fast) var(--ease-out); }
+  .nav-link:hover { color: #14151F; }
+  .nav-link:focus-visible { outline: none; box-shadow: 0 0 0 2px #B3D4FF; border-radius: 4px; }
+
+  .fade-up { animation: fadeUp var(--dur-emphasis) var(--ease-out) both; }
+  .fade-up-d1 { animation: fadeUp var(--dur-emphasis) var(--ease-out) 120ms both; }
+  .fade-up-d2 { animation: fadeUp var(--dur-emphasis) var(--ease-out) 240ms both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-emphasis);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { transition: none; opacity: 1; transform: none; }
+    .fade-up, .fade-up-d1, .fade-up-d2 { animation: none; }
+  }
+
+  .diff-card { transition-property: transform, box-shadow; transition-duration: var(--dur-normal); transition-timing-function: var(--ease-out); }
+  .diff-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -14px rgba(13,15,44,0.16); }
+
+  .gate-card { transition-property: transform, box-shadow, border-color; transition-duration: var(--dur-normal); transition-timing-function: var(--ease-out); }
+  .gate-card:hover { transform: translateY(-6px); }
+  .gate-card:hover .gate-arrow { transform: translateX(4px); }
+  .gate-arrow { transition: transform var(--dur-fast) var(--ease-out); }
+
+  .match-line.reveal {
+    transform: scaleX(0);
+    transition: transform var(--dur-emphasis) var(--ease-emphasis), opacity var(--dur-reveal) var(--ease-out);
+  }
+  .match-line.reveal.is-visible { transform: scaleX(1); }
+
+  .ai-pulse {
+    animation: aiPulse 2.8s ease-out infinite;
+  }
+  .ai-pulse-d1 { animation-delay: 0.9s; }
+  @keyframes aiPulse {
+    0% { transform: scale(0.85); opacity: 0.7; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .match-line.reveal { transition: opacity var(--dur-reveal) var(--ease-out); transform: none; }
+    .ai-pulse { animation: none; opacity: 0; }
+  }
+
+  .texture-dot-light {
+    background-image: radial-gradient(rgba(98,166,255,0.16) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .texture-dot-dark {
+    background-image: radial-gradient(rgba(141,152,240,0.14) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .mesh-parallax { will-change: transform; transition: transform 0.35s ease-out; }
+  .mesh-drift-a { animation: driftA 12s ease-in-out infinite alternate; }
+  .mesh-drift-b { animation: driftB 15s ease-in-out infinite alternate; }
+  .mesh-drift-c { animation: driftC 18s ease-in-out infinite alternate; }
+  @keyframes driftA {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(-34px, 26px) scale(1.08); }
+  }
+  @keyframes driftB {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(26px, -22px) scale(0.94); }
+  }
+  @keyframes driftC {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(22px, -30px) scale(1.06); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mesh-drift-a, .mesh-drift-b, .mesh-drift-c { animation: none; }
+    .mesh-parallax { transition: none; }
+  }
+
+  .hero-gradient-text {
+    background-image: linear-gradient(115deg, #0D0F2C 0%, #338BFF 55%, #62A6FF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero-carousel-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 56px, black calc(100% - 56px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 56px, black calc(100% - 56px), transparent);
+  }
+  .hero-carousel-track {
+    width: max-content;
+    animation: heroCarouselScroll 36s linear infinite;
+  }
+  @keyframes heroCarouselScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-carousel-track { animation: none; }
+  }
+
+</style>
+</head>
+<body class="font-sans text-grey-600 antialiased">
+
+<!-- ===== Header / Section 1. Navigation ===== -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b border-grey-200">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 shrink-0">
+      <img src="brand_logo/logo_nextpartner.png" alt="NextPartner - Senior Talent Marketplace" class="h-8 md:h-9 w-auto">
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-base font-medium">
+      <a href="#story" class="nav-link">서비스 소개</a>
+      <a href="seekers.html" class="nav-link">구직자</a>
+      <a href="companies.html" class="nav-link">채용기업</a>
+    </nav>
+    <div class="flex items-center gap-4">
+      <!-- TODO: 실제 로그인 라우트 확인 후 연결 -->
+      <a href="#" class="hidden sm:inline nav-link text-base font-medium">로그인</a>
+      <a href="#signup">
+        <button class="btn-primary rounded-full px-5 py-2.5 text-base font-bold">
+          시작하기
+        </button>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Section 2. Hero ===== -->
+<section id="top" class="relative overflow-hidden page-wash-top">
+  <div class="absolute inset-0 texture-dot-light opacity-[0.6] [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
+  <div id="hero-mesh" class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="mesh-parallax" data-depth="16" style="position:absolute; top:-140px; right:-120px;">
+      <div class="mesh-drift-a w-[480px] h-[480px] rounded-full bg-indigo-300/40 blur-3xl"></div>
+    </div>
+    <div class="mesh-parallax" data-depth="28" style="position:absolute; top:120px; left:26%;">
+      <div class="mesh-drift-b w-[360px] h-[360px] rounded-full bg-sky-200/45 blur-3xl"></div>
+    </div>
+    <div class="mesh-parallax" data-depth="10" style="position:absolute; bottom:-180px; left:-110px;">
+      <div class="mesh-drift-c w-[420px] h-[420px] rounded-full bg-indigo-200/40 blur-3xl"></div>
+    </div>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 pt-20 pb-24 lg:pt-28 lg:pb-32 relative">
+    <div class="max-w-3xl mx-auto text-center">
+      <span class="fade-up inline-block text-indigo-700 text-base font-bold tracking-wide bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 mb-7">
+        지역 기반 일자리·인재 연결
+      </span>
+      <h1 class="hero-gradient-text break-keep fade-up-d1 m-0 text-[1.5rem] sm:text-5xl lg:text-h1 font-semibold leading-[1.25] tracking-tight lg:tracking-[-0.02em]">
+        경력을 다시 발견하고,<br>
+        내 지역의 일자리와 연결합니다.
+      </h1>
+      <p class="fade-up-d2 mt-7 text-lg lg:text-lead text-grey-600 leading-relaxed">
+        AI가 당신의 경험을 새로운 직무로 재해석하고,<br>
+        생활권과 희망 지역에 맞는 일자리와 인재로 연결합니다.
+
+      </p>
+      <div class="fade-up-d2 mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="seekers.html">
+          <button class="btn-outline rounded-full px-8 py-4 text-base font-bold w-full sm:w-auto">
+            일자리를 찾고 있어요
+          </button>
+        </a>
+        <a href="companies.html">
+          <button class="btn-outline rounded-full px-8 py-4 text-base font-bold w-full sm:w-auto">
+            인재를 채용하고 싶어요
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <div class="reveal mt-16 lg:mt-20 relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw]">
+      <div class="hero-carousel-outer relative overflow-hidden">
+        <div class="hero-carousel-mask overflow-hidden">
+          <div class="hero-carousel-track flex items-center gap-4 sm:gap-5 py-6 sm:py-8">
+            <!-- set 1 -->
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden">
+              <img src="img/0b0521a3-e471-4d18-8427-3952f7c1db2a.png" alt="공장에서 웃고 있는 시니어 제조 전문가" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">제조 현장 15년 <span class="text-indigo-600">→ 품질관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">품질검사</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">공정개선</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 · 정규직 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden">
+              <img src="img/9be6c30b-60de-4091-9aac-e3b6dcd77344.png" alt="사무실에서 대화하는 시니어 전문가" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">생산관리 20년 <span class="text-indigo-600">→ 현장관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">생산계획</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">팀 관리</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">경기 · 즉시 출근 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden">
+              <img src="img/ddd3129d-a9bb-4697-9b43-2dcb5e73f954.png" alt="거실에서 대화하는 시니어 구직자" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">고객 응대 12년 <span class="text-indigo-600">→ 상담직무</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">고객 상담</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">문제 해결</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 송파 · 파트타임 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden">
+              <img src="img/6f490ce4-0157-4cad-a1a1-788b8c3fee8c.png" alt="서재에서 웃고 있는 시니어 구직자" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">인사 총무 18년 <span class="text-indigo-600">→ 조직관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">인사관리</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">조직운영</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 · 정규직 희망</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden">
+              <img src="img/e3fd5347-4b65-488b-b9cd-0f2e2371a907.png" alt="매장에서 앞치마를 두른 시니어 사장님" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">매장 운영 10년 <span class="text-indigo-600">→ 서비스관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">매장운영</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">고객관리</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">인천 · 유연근무 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden">
+              <img src="img/e7ca764f-9e47-489c-a669-c051effd0120.png" alt="서재에서 필기하며 웃는 시니어 구직자" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">회계 경리 15년 <span class="text-indigo-600">→ 사무관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">회계처리</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">문서관리</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 · 재택근무 가능</p>
+              </div>
+            </div>
+            <!-- set 2 (duplicate for seamless loop) -->
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden" aria-hidden="true">
+              <img src="img/0b0521a3-e471-4d18-8427-3952f7c1db2a.png" alt="" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">제조 현장 15년 <span class="text-indigo-600">→ 품질관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">품질검사</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">공정개선</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 · 정규직 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden" aria-hidden="true">
+              <img src="img/9be6c30b-60de-4091-9aac-e3b6dcd77344.png" alt="" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">생산관리 20년 <span class="text-indigo-600">→ 현장관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">생산계획</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">팀 관리</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">경기 · 즉시 출근 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden" aria-hidden="true">
+              <img src="img/ddd3129d-a9bb-4697-9b43-2dcb5e73f954.png" alt="" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">고객 응대 12년 <span class="text-indigo-600">→ 상담직무</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">고객 상담</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">문제 해결</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 송파 · 파트타임 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden" aria-hidden="true">
+              <img src="img/6f490ce4-0157-4cad-a1a1-788b8c3fee8c.png" alt="" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">인사 총무 18년 <span class="text-indigo-600">→ 조직관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">인사관리</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">조직운영</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 · 정규직 희망</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden" aria-hidden="true">
+              <img src="img/e3fd5347-4b65-488b-b9cd-0f2e2371a907.png" alt="" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">매장 운영 10년 <span class="text-indigo-600">→ 서비스관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">매장운영</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">고객관리</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">인천 · 유연근무 가능</p>
+              </div>
+            </div>
+            <div class="relative shrink-0 h-[210px] sm:h-[260px] lg:h-[320px] aspect-[14/9] rounded-2xl overflow-hidden" aria-hidden="true">
+              <img src="img/e7ca764f-9e47-489c-a669-c051effd0120.png" alt="" class="w-full h-full object-cover object-top">
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-navy-900/5 to-transparent"></div>
+              <div class="absolute left-3 bottom-3 sm:left-4 sm:bottom-4 bg-white/75 backdrop-blur-md rounded-xl shadow-card px-3.5 py-3 max-w-[85%]">
+                <div class="flex items-center gap-1.5 mb-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <p class="text-base font-bold text-navy-900 whitespace-nowrap">회계 경리 15년 <span class="text-indigo-600">→ 사무관리</span></p>
+                </div>
+                <div class="flex flex-wrap gap-1 mb-1.5">
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">회계처리</span>
+                  <span class="text-base font-semibold text-indigo-700 bg-indigo-50 rounded-full px-2 py-0.5">문서관리</span>
+                </div>
+                <p class="text-base text-grey-600 font-medium">서울 · 재택근무 가능</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Section 3. Brand Story ===== -->
+<section id="story" class="bg-white">
+  <div id="story-wrap">
+    <div id="story-sticky">
+      <div class="max-w-xl text-center mb-8 px-6">
+        <h2 class="text-2xl sm:text-h2 font-semibold text-navy-900 leading-tight tracking-tight">
+          당신의 경험은 직무명 하나로<br>설명되지 않습니다.
+        </h2>
+        <p class="mt-4 text-grey-600 leading-relaxed">
+          수행했던 업무와 해결한 문제, 쌓아온 기술과 사람을 이끌었던 경험까지.<br>
+          넥스트파트너는 AI로 이러한 경험을 분석해 새로운 직무와 역할로 재구성합니다.
+        </p>
+      </div>
+      <div id="story-frame" class="bg-navy-900">
+        <video id="storyVideo" src="media/nextpartner_intro.mp4" muted loop playsinline></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Section 4. AI Career Reconstruction ===== -->
+<section id="solution" class="bg-grey-50 relative overflow-hidden">
+  <div class="absolute inset-0 texture-dot-light opacity-[0.5] [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24 relative">
+    <div class="reveal max-w-2xl mb-14 text-center mx-auto">
+      <p class="text-indigo-600 font-bold text-base tracking-wide mb-3">AI는 경력을 어떻게 이해할까?</p>
+      <h2 class="text-3xl sm:text-h2 font-semibold text-navy-900 leading-tight tracking-tight">
+        AI는 직무명이 아니라,<br>
+        실제 경험을 이해합니다.
+      </h2>
+    </div>
+
+    <div class="reveal flex flex-wrap items-center justify-center gap-x-2 gap-y-4">
+      <span class="bg-white border border-indigo-100 shadow-card rounded-full px-5 py-2.5 text-base font-bold text-navy-900">경험 분석</span>
+      <span class="text-indigo-300" aria-hidden="true">→</span>
+      <span class="bg-white border border-indigo-100 shadow-card rounded-full px-5 py-2.5 text-base font-bold text-navy-900">역할 분석</span>
+      <span class="text-indigo-300" aria-hidden="true">→</span>
+      <span class="bg-white border border-indigo-100 shadow-card rounded-full px-5 py-2.5 text-base font-bold text-navy-900">경력 재구성</span>
+      <span class="text-indigo-300" aria-hidden="true">→</span>
+      <span class="bg-white border border-indigo-100 shadow-card rounded-full px-5 py-2.5 text-base font-bold text-navy-900">전환 직무</span>
+      <span class="text-indigo-300" aria-hidden="true">→</span>
+      <span class="bg-indigo-500 rounded-full px-5 py-2.5 text-base font-bold text-navy-900">지역·조건 매칭</span>
+    </div>
+
+    <div class="reveal mt-16 max-w-xl mx-auto bg-white rounded-2xl border border-grey-200 shadow-card-lg p-6 sm:p-7">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center text-navy-900 font-bold text-base shrink-0">AI</div>
+        <div>
+          <p class="text-navy-900 font-bold text-base">경력 분석 결과</p>
+          <p class="text-grey-400 text-base">추천 근거</p>
+        </div>
+        <span class="ml-auto bg-indigo-50 text-indigo-700 text-base font-bold px-2.5 py-1 rounded-full shrink-0">일치</span>
+      </div>
+      <div class="space-y-3">
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-20 text-base font-bold text-grey-400 pt-0.5">추천 직무</span>
+          <span class="text-navy-900 font-bold">품질관리</span>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="shrink-0 w-20 text-base font-bold text-grey-400 pt-0.5">추천 지역</span>
+          <span class="text-navy-900 font-bold">경기 남부 산업단지</span>
+        </div>
+        <div class="flex items-start gap-3 pt-3 border-t border-grey-200">
+          <span class="shrink-0 w-20 text-base font-bold text-grey-400 pt-0.5">추천 이유</span>
+          <span class="text-grey-600 leading-relaxed">생산 현장 관리 경험과 출퇴근 가능 지역이 모두 일치합니다.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Section 6. Why NextPartner ===== -->
+<section id="why" class="bg-grey-100">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24">
+    <div class="reveal max-w-2xl mb-14 text-center mx-auto">
+      <p class="text-indigo-600 font-bold text-base tracking-wide mb-3">Why NextPartner</p>
+      <h2 class="text-3xl sm:text-h2 font-semibold text-navy-900 leading-tight tracking-tight">
+        넥스트파트너가 다른 이유
+      </h2>
+    </div>
+
+    <div class="max-w-5xl mx-auto space-y-5">
+      <!-- 1차 핵심 가치 -->
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div class="reveal bg-white rounded-3xl border border-grey-200 border-l-4 border-l-indigo-600 p-8 sm:p-10">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-500 flex items-center justify-center mb-6">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D0F2C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold text-navy-900 mb-3 tracking-tight">AI 경력 재해석</h3>
+          <p class="text-grey-600 leading-relaxed">직무명이 아니라 실제 수행한 업무와 문제 해결 경험을 기준으로 경력을 다시 해석합니다.</p>
+        </div>
+        <div class="reveal bg-white rounded-3xl border border-grey-200 border-l-4 border-l-indigo-600 p-8 sm:p-10">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-500 flex items-center justify-center mb-6">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0D0F2C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3 class="text-2xl font-bold text-navy-900 mb-3 tracking-tight">지역 기반 매칭</h3>
+          <p class="text-grey-600 leading-relaxed">생활권과 근무조건을 함께 고려해 실제로 다닐 수 있는 일자리와 인재를 연결합니다.</p>
+        </div>
+      </div>
+
+      <!-- 2차 보조 가치 -->
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="reveal bg-white rounded-2xl border border-grey-200 p-6 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-navy-900 text-lg mb-0.5">추천 근거 제공</h3>
+            <p class="text-grey-600 text-base leading-relaxed">추천 이유를 제공합니다.</p>
+          </div>
+        </div>
+        <div class="reveal bg-white rounded-2xl border border-grey-200 p-6 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M17.5 3.5a4 4 0 0 1 0 7"/><path d="M21 21v-2a4 4 0 0 0-2.5-3.7"/></svg>
+          </div>
+          <div>
+            <h3 class="font-bold text-navy-900 text-lg mb-0.5">인재풀</h3>
+            <p class="text-grey-600 text-base leading-relaxed">공개에 동의한 인재를 기업이 직접 탐색할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Section 7. AI Matching Connection ===== -->
+<section id="how" class="bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24 lg:py-28">
+    <div class="reveal max-w-4xl mb-6 text-center mx-auto">
+      <p class="text-indigo-600 font-bold text-base tracking-wide mb-3">AI 맞춤 연결</p>
+      <h2 class="text-3xl sm:text-h1 font-semibold text-navy-900 leading-tight tracking-tight">
+        구직자의 경험과 기업의 요구를 함께 분석해<br>서로 맞는 이유까지 보여드립니다.
+      </h2>
+    </div>
+    <p class="reveal max-w-2xl mx-auto mb-16 text-center text-grey-600 leading-relaxed">
+      과거 직무명이나 단순 키워드만 비교하지 않습니다.<br>
+      실제 수행 경험과 지역·산업·근무조건을 함께 분석해 구직자에게는 적합한 일자리를, 기업에는 필요한 경험을 갖춘 인재를 연결합니다.
+    </p>
+
+    <div class="reveal max-w-4xl mx-auto rounded-[2rem] border border-grey-200 shadow-card-lg overflow-hidden">
+      <div class="relative bg-gradient-to-br from-sky-50 via-white to-indigo-50 px-6 sm:px-14 py-12 sm:py-16">
+
+        <!-- Mobile: vertical flow -->
+        <div class="flex flex-col items-center gap-3 md:hidden">
+          <div class="text-center">
+            <div class="mx-auto w-20 h-20 rounded-full bg-sky-50 border-2 border-sky-200 flex items-center justify-center mb-4">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="inline-block text-base font-bold text-sky-700 bg-sky-50 rounded-full px-3 py-1 mb-3">구직자</span>
+            <p class="text-navy-900 font-bold leading-snug mb-4">구직자의 경험과<br>희망조건을 분석합니다</p>
+          </div>
+
+          <span class="w-[3px] h-8 rounded-full bg-gradient-to-b from-sky-300 to-indigo-400" aria-hidden="true"></span>
+
+          <div class="relative w-24 h-24 flex items-center justify-center shrink-0">
+            <span class="ai-pulse absolute inset-0 rounded-full bg-indigo-400/30"></span>
+            <span class="ai-pulse ai-pulse-d1 absolute inset-0 rounded-full bg-indigo-400/20"></span>
+            <div class="relative w-20 h-20 rounded-full bg-indigo-500 shadow-indigo-lg flex items-center justify-center">
+              <span class="text-navy-900 font-bold text-base">AI 매칭</span>
+            </div>
+          </div>
+          <p class="text-navy-900 font-bold text-center">경험과 채용조건을<br>교차 분석합니다</p>
+          <div class="flex flex-col items-center gap-2">
+            <span class="inline-block bg-white border border-indigo-100 shadow-card rounded-full px-3.5 py-1.5 text-base font-bold text-navy-900">경력 적합도</span>
+            <span class="inline-block bg-white border border-indigo-100 shadow-card rounded-full px-3.5 py-1.5 text-base font-bold text-navy-900">근무조건 일치도</span>
+            <span class="inline-block bg-white border border-indigo-100 shadow-card rounded-full px-3.5 py-1.5 text-base font-bold text-navy-900">유사 업무 경험</span>
+          </div>
+
+          <span class="w-[3px] h-8 rounded-full bg-gradient-to-b from-indigo-400 to-indigo-600" aria-hidden="true"></span>
+
+          <div class="text-center">
+            <div class="mx-auto w-20 h-20 rounded-full bg-indigo-50 border-2 border-indigo-200 flex items-center justify-center mb-4">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            </div>
+            <span class="inline-block text-base font-bold text-indigo-700 bg-indigo-50 rounded-full px-3 py-1 mb-3">채용기업</span>
+            <p class="text-navy-900 font-bold leading-snug mb-4">기업이 필요로 하는<br>경험과 조건을 분석합니다</p>
+          </div>
+
+          <p class="reveal mt-8 pt-6 border-t border-grey-200/70 text-center text-grey-600 leading-relaxed">
+            실제 경험을 기준으로 적합도를 분석하고<br>추천 이유와 확인이 필요한 조건을 생성합니다.
+          </p>
+        </div>
+
+        <!-- Desktop: grid keeps icons, connecting line, and the AI badge locked to one shared center line -->
+        <div class="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:gap-x-10">
+          <div class="row-start-1 col-start-1 self-center relative z-10 flex justify-center">
+            <div class="w-24 h-24 rounded-full bg-sky-50 border-2 border-sky-200 flex items-center justify-center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+          </div>
+
+          <div class="row-start-1 col-start-1 col-span-3 self-center relative h-[3px] z-0">
+            <span class="match-line reveal absolute inset-0 rounded-full bg-gradient-to-r from-sky-300 via-indigo-400 to-indigo-600"></span>
+          </div>
+          <div class="row-start-1 col-start-2 self-center relative z-10 flex items-center justify-center">
+            <div class="relative w-28 h-28 flex items-center justify-center">
+              <span class="ai-pulse absolute inset-0 rounded-full bg-indigo-400/30"></span>
+              <span class="ai-pulse ai-pulse-d1 absolute inset-0 rounded-full bg-indigo-400/20"></span>
+              <div class="relative w-24 h-24 rounded-full bg-indigo-500 shadow-indigo-lg flex items-center justify-center ring-4 ring-white">
+                <span class="text-navy-900 font-bold text-base">AI 매칭</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row-start-1 col-start-3 self-center relative z-10 flex justify-center">
+            <div class="w-24 h-24 rounded-full bg-indigo-50 border-2 border-indigo-200 flex items-center justify-center">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            </div>
+          </div>
+
+          <div class="row-start-2 col-start-1 mt-6 text-center">
+            <span class="inline-block text-base font-bold text-sky-700 bg-sky-50 rounded-full px-3 py-1 mb-3">구직자</span>
+            <p class="text-navy-900 font-bold leading-snug mb-4">구직자의 경험과<br>희망조건을 분석합니다</p>
+          </div>
+
+          <div class="row-start-2 col-start-2 mt-6 text-center flex flex-col items-center">
+            <p class="text-navy-900 font-bold mb-4">경험과 채용조건을<br>교차 분석합니다</p>
+            <div class="flex flex-col items-center gap-2">
+              <span class="inline-block bg-white border border-indigo-100 shadow-card rounded-full px-3.5 py-1.5 text-base font-bold text-navy-900 whitespace-nowrap">경력 적합도</span>
+              <span class="inline-block bg-white border border-indigo-100 shadow-card rounded-full px-3.5 py-1.5 text-base font-bold text-navy-900 whitespace-nowrap">근무조건 일치도</span>
+              <span class="inline-block bg-white border border-indigo-100 shadow-card rounded-full px-3.5 py-1.5 text-base font-bold text-navy-900 whitespace-nowrap">유사 업무 경험</span>
+            </div>
+          </div>
+
+          <div class="row-start-2 col-start-3 mt-6 text-center">
+            <span class="inline-block text-base font-bold text-indigo-700 bg-indigo-50 rounded-full px-3 py-1 mb-3">채용기업</span>
+            <p class="text-navy-900 font-bold leading-snug mb-4">기업이 필요로 하는<br>경험과 조건을 분석합니다</p>
+          </div>
+        </div>
+
+        <p class="reveal hidden md:block mt-12 pt-8 border-t border-grey-200/70 text-center text-grey-600 leading-relaxed max-w-xl mx-auto">
+          실제 경험을 기준으로 적합도를 분석하고<br>추천 이유와 확인이 필요한 조건을 생성합니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Section 8. Trust ===== -->
+<section class="bg-grey-50">
+  <div class="max-w-5xl mx-auto px-6 lg:px-8 py-24">
+    <div class="reveal max-w-2xl mb-6 text-center mx-auto">
+      <p class="text-indigo-600 font-bold text-base tracking-wide mb-3">신뢰 원칙</p>
+      <h2 class="text-3xl sm:text-h2 font-semibold text-navy-900 leading-tight tracking-tight">
+        당신의 경력은 존중받고,<br>매칭 과정은 투명해야 합니다.
+      </h2>
+    </div>
+    <p class="mt-5 mb-14 text-grey-600 text-lg text-center max-w-2xl mx-auto">
+      사용자의 실제 경험을 바탕으로 분석하고, 추천 이유를 이해하기 쉽게 안내합니다.
+    </p>
+
+    <div class="grid sm:grid-cols-3 gap-5 text-left">
+      <div class="reveal rounded-2xl border border-grey-200 bg-white p-6">
+        <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3 class="font-bold text-navy-900 mb-1.5">근거가 보이는 AI 추천</h3>
+        <p class="text-grey-600 text-base leading-relaxed">모든 추천에는 어떤 경력과 경험이 해당 일자리와 연결되었는지 함께 제공합니다.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-grey-200 bg-white p-6">
+        <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4Z"/></svg>
+        </div>
+        <h3 class="font-bold text-navy-900 mb-1.5">직접 확인하고 확정하는 경력 분석</h3>
+        <p class="text-grey-600 text-base leading-relaxed">AI가 분석한 경험, 스킬, 역할은 사용자가 직접 검토하고 수정할 수 있습니다.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-grey-200 bg-white p-6">
+        <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </div>
+        <h3 class="font-bold text-navy-900 mb-1.5">선택할 수 있는 정보 공개</h3>
+        <p class="text-grey-600 text-base leading-relaxed">인재풀 등록과 기업 공개 여부는 사용자가 직접 선택합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Section 8-1. Audience Gateway ===== -->
+<section id="gateway" class="bg-white">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24 lg:py-28">
+    <div class="reveal max-w-2xl mb-16 text-center mx-auto">
+      <h2 class="text-3xl sm:text-h1 font-semibold text-navy-900 leading-tight tracking-tight">
+        재해석된 경력을,<br>
+        필요한 지역에서 연결합니다.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+      <a href="seekers.html" class="gate-card reveal group block bg-sky-50 border border-sky-200 rounded-3xl p-10 sm:p-12">
+        <span class="inline-block text-base font-bold text-sky-700 bg-white rounded-full px-3.5 py-1.5 mb-6">구직자</span>
+        <h3 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-4 tracking-tight leading-snug">새로운 일자리를<br>찾고 계신가요?</h3>
+        <p class="text-grey-600 text-lg leading-relaxed mb-10">AI가 경력을 분석하고 새로운 직무와 지역에 맞는 일자리를 추천합니다.</p>
+        <span class="inline-flex items-center gap-2 text-sky-700 font-bold">
+          구직자 서비스 보기 <span class="gate-arrow" aria-hidden="true">→</span>
+        </span>
+      </a>
+      <a href="companies.html" class="gate-card reveal group block bg-indigo-50 border border-indigo-200 rounded-3xl p-10 sm:p-12">
+        <span class="inline-block text-base font-bold text-indigo-700 bg-white rounded-full px-3.5 py-1.5 mb-6">채용기업</span>
+        <h3 class="text-2xl sm:text-3xl font-bold text-navy-900 mb-4 tracking-tight leading-snug">적합한 인재를<br>찾고 계신가요?</h3>
+        <p class="text-grey-600 text-lg leading-relaxed mb-10">AI가 구직자의 실제 경험과 역할을 분석해 기업에 필요한 인재를 추천합니다.</p>
+        <span class="inline-flex items-center gap-2 text-indigo-700 font-bold">
+          채용기업 서비스 보기 <span class="gate-arrow" aria-hidden="true">→</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Section 9. Final CTA ===== -->
+<section id="signup" class="page-wash-bottom relative overflow-hidden">
+  <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-sky-200/40 blur-3xl pointer-events-none"></div>
+  <div class="absolute right-10 top-0 w-64 h-64 rounded-full bg-indigo-200/40 blur-3xl pointer-events-none"></div>
+  <div class="max-w-4xl mx-auto px-6 lg:px-8 py-24 text-center relative">
+    <h2 class="text-3xl sm:text-h2 font-semibold text-navy-900 leading-tight tracking-tight">
+      당신의 경험을 다시 발견하고,<br>
+      가까운 곳의 새로운 기회로 연결하세요.
+    </h2>
+    <p class="mt-5 text-grey-600 text-lg">
+      AI가 경험과 역할을 재해석해 희망 지역에 맞는 일자리와 인재를 추천합니다.
+    </p>
+
+    <div class="mt-12 grid sm:grid-cols-2 gap-5 text-left">
+      <div class="bg-white border border-grey-200 shadow-card rounded-2xl p-7">
+        <span class="inline-block text-base font-bold text-sky-700 bg-sky-100 rounded-full px-3 py-1 mb-4">구직자</span>
+        <p class="text-grey-600 mb-6">경력을 분석하고, 맞춤 일자리를 확인해보세요.</p>
+        <a href="seekers.html"><button class="btn-primary rounded-full px-6 py-3.5 text-base font-bold w-full">구직 시작하기</button></a>
+      </div>
+      <div class="bg-white border border-grey-200 shadow-card rounded-2xl p-7">
+        <span class="inline-block text-base font-bold text-indigo-700 bg-indigo-100 rounded-full px-3 py-1 mb-4">채용 기업</span>
+        <p class="text-grey-600 mb-6">채용을 시작하고, 추천 인재를 확인해보세요.</p>
+        <a href="companies.html"><button class="btn-primary rounded-full px-6 py-3.5 text-base font-bold w-full">채용 시작하기</button></a>
+      </div>
+    </div>
+
+    <p class="mt-8 text-grey-400 text-base">가입은 무료이며, 언제든 그만두실 수 있습니다.</p>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="bg-navy-950">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-8 border-b border-white/10">
+      <span class="text-lg font-bold text-white">NextPartner</span>
+      <!-- TODO: 실제 프로젝트에 라우트가 생기면 연결 -->
+      <nav class="flex flex-wrap gap-x-6 gap-y-2 text-base text-navy-300">
+        <a href="#" class="hover:text-white transition-colors">이용약관</a>
+        <a href="#" class="hover:text-white transition-colors">개인정보처리방침</a>
+        <a href="#" class="hover:text-white transition-colors">고객센터</a>
+      </nav>
+    </div>
+    <div class="pt-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div class="text-navy-400 text-base leading-relaxed">
+        <!-- TODO: 실제 사업자 정보(대표자명, 사업자등록번호, 주소, 연락처) 확정 후 반영 -->
+        <p>사업자 정보 준비 중</p>
+      </div>
+      <p class="text-navy-400 text-base">© 2026 NextPartner. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var hero = document.getElementById('top');
+    var mesh = document.getElementById('hero-mesh');
+    if (!hero || !mesh) return;
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var canHover = window.matchMedia('(pointer: fine)').matches;
+    if (reduceMotion || !canHover) return;
+
+    var layers = Array.prototype.slice.call(mesh.querySelectorAll('.mesh-parallax'));
+    var ticking = false;
+    var mx = 0, my = 0;
+
+    function apply() {
+      ticking = false;
+      var rect = hero.getBoundingClientRect();
+      var nx = (mx - (rect.left + rect.width / 2)) / (rect.width / 2);
+      var ny = (my - (rect.top + rect.height / 2)) / (rect.height / 2);
+      layers.forEach(function (el) {
+        var depth = parseFloat(el.getAttribute('data-depth')) || 15;
+        el.style.transform = 'translate(' + (nx * depth) + 'px, ' + (ny * depth) + 'px)';
+      });
+    }
+
+    hero.addEventListener('mousemove', function (e) {
+      mx = e.clientX;
+      my = e.clientY;
+      if (!ticking) {
+        window.requestAnimationFrame(apply);
+        ticking = true;
+      }
+    });
+
+    hero.addEventListener('mouseleave', function () {
+      layers.forEach(function (el) { el.style.transform = 'translate(0, 0)'; });
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    var wrap = document.getElementById('story-wrap');
+    var frame = document.getElementById('story-frame');
+    var video = document.getElementById('storyVideo');
+    if (!wrap || !frame || !video) return;
+
+    // If the video file is missing or fails to load, hide the story section gracefully.
+    video.addEventListener('error', function () {
+      var section = document.getElementById('story');
+      if (section) section.remove();
+    });
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    function sizeRange() {
+      var vw = window.innerWidth, vh = window.innerHeight;
+      var minW = Math.min(vw * 0.5, 640);
+      var maxW = Math.min(vw * 0.92, 1200);
+      var minH = minW * 9 / 16;
+      var maxH = maxW * 9 / 16;
+      var capH = vh * 0.62;
+      if (maxH > capH) { maxH = capH; maxW = maxH * 16 / 9; }
+      if (minH > maxH) { minH = maxH; minW = minH * 16 / 9; }
+      return { minW: minW, minH: minH, maxW: maxW, maxH: maxH };
+    }
+
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var rect = wrap.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var scrollable = wrap.offsetHeight - vh;
+      var scrolled = -rect.top;
+      var progress = scrollable > 0 ? Math.min(Math.max(scrolled / scrollable, 0), 1) : 0;
+      var e = reduceMotion ? 1 : easeOutCubic(progress);
+
+      var r = sizeRange();
+      var w = r.minW + (r.maxW - r.minW) * e;
+      var h = r.minH + (r.maxH - r.minH) * e;
+      var radius = 28 - 12 * e;
+
+      frame.style.width = w + 'px';
+      frame.style.height = h + 'px';
+      frame.style.borderRadius = radius + 'px';
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+
+    // Only play the video while it's actually in view.
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          video.play().catch(function () {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+    observer.observe(frame);
+  })();
+</script>
+
+<script>
+  (function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, i) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var group = Array.prototype.indexOf.call(el.parentNode.children, el);
+          el.style.transitionDelay = Math.min(group * 90, 360) + 'ms';
+          el.classList.add('is-visible');
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
