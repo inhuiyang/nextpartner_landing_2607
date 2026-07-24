@@ -142,6 +142,17 @@
   @media (prefers-reduced-motion: reduce) {
     .ai-pulse { animation: none; opacity: 0; }
   }
+  .step-chase {
+    animation: stepChase var(--chase-duration, 4.2s) ease-in-out infinite;
+    animation-delay: var(--chase-delay, 0s);
+  }
+  @keyframes stepChase {
+    0%, 9%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(51,139,255,0); }
+    4% { transform: scale(1.16); box-shadow: 0 0 0 7px rgba(51,139,255,0.22); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .step-chase { animation: none; }
+  }
   .texture-dot-light {
     background-image: radial-gradient(rgba(98,166,255,0.16) 1px, transparent 1px);
     background-size: 20px 20px;
@@ -440,49 +451,49 @@
     <div class="reveal max-w-sm mx-auto md:hidden">
       <div class="flex gap-4">
         <div class="flex flex-col items-center shrink-0">
-          <span class="w-9 h-9 rounded-full bg-white border-2 border-indigo-200 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">1</span>
+          <span class="step-chase w-9 h-9 rounded-full bg-white border-2 border-indigo-200 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:0s">1</span>
           <span class="w-0.5 flex-1 min-h-[24px] bg-gradient-to-b from-indigo-200 to-indigo-300"></span>
         </div>
         <p class="text-navy-900 font-bold pt-1.5 pb-4">기업 회원가입 및 인증</p>
       </div>
       <div class="flex gap-4">
         <div class="flex flex-col items-center shrink-0">
-          <span class="w-9 h-9 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">2</span>
+          <span class="step-chase w-9 h-9 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:0.7s">2</span>
           <span class="w-0.5 flex-1 min-h-[24px] bg-indigo-300"></span>
         </div>
         <p class="text-navy-900 font-bold pt-1.5 pb-4">기업 정보 등록</p>
       </div>
       <div class="flex gap-4">
         <div class="flex flex-col items-center shrink-0">
-          <span class="w-9 h-9 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">3</span>
+          <span class="step-chase w-9 h-9 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:1.4s">3</span>
           <span class="w-0.5 flex-1 min-h-[24px] bg-gradient-to-b from-indigo-300 to-indigo-500"></span>
         </div>
         <p class="text-navy-900 font-bold pt-1.5 pb-4">채용공고 또는 희망 인재 조건 등록</p>
       </div>
       <div class="flex gap-4">
         <div class="flex flex-col items-center shrink-0">
-          <span class="w-9 h-9 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">4</span>
+          <span class="step-chase w-9 h-9 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:2.1s">4</span>
           <span class="w-0.5 flex-1 min-h-[24px] bg-indigo-500"></span>
         </div>
         <p class="text-navy-900 font-bold pt-1.5 pb-4">AI 추천 인재 확인</p>
       </div>
       <div class="flex gap-4">
         <div class="flex flex-col items-center shrink-0">
-          <span class="w-9 h-9 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">5</span>
+          <span class="step-chase w-9 h-9 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:2.8s">5</span>
           <span class="w-0.5 flex-1 min-h-[24px] bg-gradient-to-b from-indigo-500 to-indigo-600"></span>
         </div>
         <p class="text-navy-900 font-bold pt-1.5 pb-4">지원자 및 인재풀 검토</p>
       </div>
       <div class="flex gap-4">
         <div class="flex flex-col items-center shrink-0">
-          <span class="w-9 h-9 rounded-full bg-white border-2 border-indigo-600 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">6</span>
+          <span class="step-chase w-9 h-9 rounded-full bg-white border-2 border-indigo-600 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:3.5s">6</span>
           <span class="w-0.5 flex-1 min-h-[24px] bg-gradient-to-b from-indigo-600 to-indigo-700"></span>
         </div>
         <p class="text-navy-900 font-bold pt-1.5 pb-4">면접·연락 진행</p>
       </div>
       <div class="flex gap-4">
         <div class="flex flex-col items-center shrink-0">
-          <span class="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-indigo flex items-center justify-center text-white font-bold text-base">7</span>
+          <span class="step-chase w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-indigo flex items-center justify-center text-white font-bold text-base" style="--chase-duration:4.9s;--chase-delay:4.2s">7</span>
         </div>
         <p class="text-navy-900 font-bold pt-1.5">채용 현황 관리</p>
       </div>
@@ -497,33 +508,33 @@
 
         <div class="w-28 relative z-10 flex flex-col items-center">
           <div class="w-full flex justify-start">
-            <span class="w-10 h-10 rounded-full bg-white border-2 border-indigo-200 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">1</span>
+            <span class="step-chase w-10 h-10 rounded-full bg-white border-2 border-indigo-200 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:0s">1</span>
           </div>
           <p class="mt-4 text-left w-full text-navy-900 font-bold text-sm leading-snug">기업 회원가입 및 인증</p>
         </div>
         <div class="w-28 relative z-10 flex flex-col items-center">
-          <span class="w-10 h-10 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">2</span>
+          <span class="step-chase w-10 h-10 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:0.7s">2</span>
           <p class="mt-4 text-center text-navy-900 font-bold text-sm leading-snug">기업 정보 등록</p>
         </div>
         <div class="w-28 relative z-10 flex flex-col items-center">
-          <span class="w-10 h-10 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">3</span>
+          <span class="step-chase w-10 h-10 rounded-full bg-white border-2 border-indigo-300 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:1.4s">3</span>
           <p class="mt-4 text-center text-navy-900 font-bold text-sm leading-snug">채용공고 또는 희망 인재 조건 등록</p>
         </div>
         <div class="w-28 relative z-10 flex flex-col items-center">
-          <span class="w-10 h-10 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">4</span>
+          <span class="step-chase w-10 h-10 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:2.1s">4</span>
           <p class="mt-4 text-center text-navy-900 font-bold text-sm leading-snug">AI 추천 인재 확인</p>
         </div>
         <div class="w-28 relative z-10 flex flex-col items-center">
-          <span class="w-10 h-10 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">5</span>
+          <span class="step-chase w-10 h-10 rounded-full bg-white border-2 border-indigo-500 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:2.8s">5</span>
           <p class="mt-4 text-center text-navy-900 font-bold text-sm leading-snug">지원자 및 인재풀 검토</p>
         </div>
         <div class="w-28 relative z-10 flex flex-col items-center">
-          <span class="w-10 h-10 rounded-full bg-white border-2 border-indigo-600 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base">6</span>
+          <span class="step-chase w-10 h-10 rounded-full bg-white border-2 border-indigo-600 shadow-card flex items-center justify-center text-indigo-600 font-bold text-base" style="--chase-duration:4.9s;--chase-delay:3.5s">6</span>
           <p class="mt-4 text-center text-navy-900 font-bold text-sm leading-snug">면접·연락 진행</p>
         </div>
         <div class="w-28 relative z-10 flex flex-col items-center">
           <div class="w-full flex justify-end">
-            <span class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-indigo flex items-center justify-center text-white font-bold text-base">7</span>
+            <span class="step-chase w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 shadow-indigo flex items-center justify-center text-white font-bold text-base" style="--chase-duration:4.9s;--chase-delay:4.2s">7</span>
           </div>
           <p class="mt-4 text-right w-full text-navy-900 font-bold text-sm leading-snug">채용 현황 관리</p>
         </div>
