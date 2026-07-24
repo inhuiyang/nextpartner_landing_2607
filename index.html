@@ -91,24 +91,12 @@
     background: linear-gradient(200deg, #D1E6FF 0%, #FFFFFF 45%, #EBF4FF 100%);
   }
 
-  #story-wrap {
-    position: relative;
-    height: 220vh;
-  }
-  #story-sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
   #story-frame {
     position: relative;
     overflow: hidden;
-    will-change: width, height, border-radius;
+    width: min(960px, 92vw);
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
     box-shadow: 0 4px 10px rgba(13,15,44,0.06), 0 24px 48px -14px rgba(13,15,44,0.18);
   }
   #story-frame video {
@@ -499,22 +487,18 @@
 </section>
 
 <!-- ===== Section 3. Brand Story ===== -->
-<section id="story" class="bg-white">
-  <div id="story-wrap">
-    <div id="story-sticky">
-      <div class="max-w-xl text-center mb-8 px-6">
-        <h2 class="text-2xl sm:text-h2 font-semibold text-navy-900 leading-tight tracking-tight">
-          당신의 경험은 직무명 하나로<br>설명되지 않습니다.
-        </h2>
-        <p class="mt-4 text-grey-600 leading-relaxed">
-          수행했던 업무와 해결한 문제, 쌓아온 기술과 사람을 이끌었던 경험까지.<br>
-          넥스트파트너는 AI로 이러한 경험을 분석해 새로운 직무와 역할로 재구성합니다.
-        </p>
-      </div>
-      <div id="story-frame" class="bg-navy-900">
-        <video id="storyVideo" src="media/nextpartner_intro.mp4" muted loop playsinline></video>
-      </div>
-    </div>
+<section id="story" class="bg-white py-24">
+  <div class="max-w-xl text-center mb-8 px-6 mx-auto">
+    <h2 class="text-2xl sm:text-h2 font-semibold text-navy-900 leading-tight tracking-tight">
+      당신의 경험은 직무명 하나로<br>설명되지 않습니다.
+    </h2>
+    <p class="mt-4 text-grey-600 leading-relaxed">
+      수행했던 업무와 해결한 문제, 쌓아온 기술과 사람을 이끌었던 경험까지.<br>
+      넥스트파트너는 AI로 이러한 경험을 분석해 새로운 직무와 역할로 재구성합니다.
+    </p>
+  </div>
+  <div id="story-frame" class="bg-navy-900 mx-auto">
+    <video id="storyVideo" src="media/nextpartner_intro.mp4" muted loop playsinline></video>
   </div>
 </section>
 
@@ -897,64 +881,15 @@
 
 <script>
   (function () {
-    var wrap = document.getElementById('story-wrap');
     var frame = document.getElementById('story-frame');
     var video = document.getElementById('storyVideo');
-    if (!wrap || !frame || !video) return;
+    if (!frame || !video) return;
 
     // If the video file is missing or fails to load, hide the story section gracefully.
     video.addEventListener('error', function () {
       var section = document.getElementById('story');
       if (section) section.remove();
     });
-
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-
-    function sizeRange() {
-      var vw = window.innerWidth, vh = window.innerHeight;
-      var minW = Math.min(vw * 0.5, 640);
-      var maxW = Math.min(vw * 0.92, 1200);
-      var minH = minW * 9 / 16;
-      var maxH = maxW * 9 / 16;
-      var capH = vh * 0.62;
-      if (maxH > capH) { maxH = capH; maxW = maxH * 16 / 9; }
-      if (minH > maxH) { minH = maxH; minW = minH * 16 / 9; }
-      return { minW: minW, minH: minH, maxW: maxW, maxH: maxH };
-    }
-
-    var ticking = false;
-
-    function update() {
-      ticking = false;
-      var rect = wrap.getBoundingClientRect();
-      var vh = window.innerHeight;
-      var scrollable = wrap.offsetHeight - vh;
-      var scrolled = -rect.top;
-      var progress = scrollable > 0 ? Math.min(Math.max(scrolled / scrollable, 0), 1) : 0;
-      var e = reduceMotion ? 1 : easeOutCubic(progress);
-
-      var r = sizeRange();
-      var w = r.minW + (r.maxW - r.minW) * e;
-      var h = r.minH + (r.maxH - r.minH) * e;
-      var radius = 28 - 12 * e;
-
-      frame.style.width = w + 'px';
-      frame.style.height = h + 'px';
-      frame.style.borderRadius = radius + 'px';
-    }
-
-    function onScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    }
-
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
 
     // Only play the video while it's actually in view.
     var observer = new IntersectionObserver(function (entries) {
