@@ -85,7 +85,7 @@
   body { background: #FFFFFF; }
 
   .page-wash-top {
-    background: linear-gradient(160deg, #EBF4FF 0%, #FFFFFF 45%, #D1E6FF 100%);
+    background: linear-gradient(160deg, rgba(0,107,230,0.07) 0%, #FFFFFF 45%, rgba(0,107,230,0.09) 100%);
   }
   .page-wash-bottom {
     background: linear-gradient(200deg, #D1E6FF 0%, #FFFFFF 45%, #EBF4FF 100%);
@@ -273,16 +273,13 @@
 
 <!-- ===== Section 2. Hero ===== -->
 <section id="top" class="relative overflow-hidden page-wash-top">
-  <div class="absolute inset-0 texture-dot-light opacity-[0.6] [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
+  <div class="absolute inset-0 texture-dot-light opacity-[0.35] [mask-image:linear-gradient(to_bottom,black,transparent)] pointer-events-none"></div>
   <div id="hero-mesh" class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
     <div class="mesh-parallax" data-depth="16" style="position:absolute; top:-140px; right:-120px;">
-      <div class="mesh-drift-a w-[480px] h-[480px] rounded-full bg-indigo-300/40 blur-3xl"></div>
-    </div>
-    <div class="mesh-parallax" data-depth="28" style="position:absolute; top:380px; left:60%;">
-      <div class="mesh-drift-b w-[360px] h-[360px] rounded-full bg-sky-200/45 blur-3xl"></div>
+      <div class="mesh-drift-a w-[480px] h-[480px] rounded-full bg-indigo-300/20 blur-3xl"></div>
     </div>
     <div class="mesh-parallax" data-depth="10" style="position:absolute; bottom:-180px; left:-110px;">
-      <div class="mesh-drift-c w-[420px] h-[420px] rounded-full bg-indigo-200/40 blur-3xl"></div>
+      <div class="mesh-drift-c w-[420px] h-[420px] rounded-full bg-indigo-200/20 blur-3xl"></div>
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-6 lg:px-8 pt-20 pb-24 lg:pt-28 lg:pb-32 relative">
