@@ -23,13 +23,13 @@
           },
           indigo: {
             50: '#EBF4FF',
-            100: '#D6E8FF',
-            200: '#B3D4FF',
-            300: '#8FBFFF',
-            400: '#78B2FF',
-            500: '#62A6FF',
-            600: '#338BFF',
-            700: '#006EFF',
+            100: '#D1E6FF',
+            200: '#A8D1FF',
+            300: '#75B5FF',
+            400: '#3392FF',
+            500: '#006BE6',
+            600: '#005AC2',
+            700: '#004799',
           },
           grey: {
             50: '#F7F7FB',
@@ -53,8 +53,8 @@
         boxShadow: {
           'card': '0 1px 2px rgba(13,15,44,0.04), 0 8px 24px -6px rgba(13,15,44,0.10)',
           'card-lg': '0 4px 10px rgba(13,15,44,0.06), 0 24px 48px -14px rgba(13,15,44,0.16)',
-          'indigo': '0 10px 24px -6px rgba(98,166,255,0.4)',
-          'indigo-lg': '0 16px 36px -8px rgba(98,166,255,0.45)',
+          'indigo': '0 10px 24px -6px rgba(0,107,230,0.4)',
+          'indigo-lg': '0 16px 36px -8px rgba(0,107,230,0.45)',
         },
       },
     },
@@ -77,18 +77,18 @@
   body { background: #FFFFFF; }
 
   .page-wash-bottom {
-    background: linear-gradient(200deg, #D6E8FF 0%, #FFFFFF 45%, #EBF4FF 100%);
+    background: linear-gradient(200deg, #D1E6FF 0%, #FFFFFF 45%, #EBF4FF 100%);
   }
 
   .btn-primary {
-    background: #62A6FF;
-    color: #0D0F2C;
+    background: #006BE6;
+    color: #FFFFFF;
     transition-property: transform, box-shadow, background-color;
     transition-duration: var(--dur-fast);
     transition-timing-function: var(--ease-out);
   }
-  .btn-primary:hover { background: #338BFF; transform: translateY(-2px) scale(1.01); box-shadow: 0 16px 36px -8px rgba(98,166,255,0.45); }
-  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #62A6FF; }
+  .btn-primary:hover { background: #005AC2; transform: translateY(-2px) scale(1.01); box-shadow: 0 16px 36px -8px rgba(0,107,230,0.45); }
+  .btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #006BE6; }
   .btn-primary:active { transform: translateY(0) scale(0.98); }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
@@ -100,13 +100,13 @@
     transition-duration: var(--dur-fast);
     transition-timing-function: var(--ease-out);
   }
-  .btn-outline:hover { background: #F7F7FB; border-color: #B3D4FF; transform: translateY(-1px) scale(1.01); }
-  .btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #B3D4FF; }
+  .btn-outline:hover { background: #F7F7FB; border-color: #A8D1FF; transform: translateY(-1px) scale(1.01); }
+  .btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #A8D1FF; }
   .btn-outline:active { transform: translateY(0); }
 
   .nav-link { position: relative; color: #585B7E; transition: color var(--dur-fast) var(--ease-out); }
   .nav-link:hover { color: #14151F; }
-  .nav-link:focus-visible { outline: none; box-shadow: 0 0 0 2px #B3D4FF; border-radius: 4px; }
+  .nav-link:focus-visible { outline: none; box-shadow: 0 0 0 2px #A8D1FF; border-radius: 4px; }
 
   .fade-up { animation: fadeUp var(--dur-emphasis) var(--ease-out) both; }
   .fade-up-d1 { animation: fadeUp var(--dur-emphasis) var(--ease-out) 120ms both; }
@@ -147,14 +147,14 @@
     animation-delay: var(--chase-delay, 0s);
   }
   @keyframes stepChase {
-    0%, 9%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(51,139,255,0); }
-    4% { transform: scale(1.16); box-shadow: 0 0 0 7px rgba(51,139,255,0.22); }
+    0%, 9%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,90,194,0); }
+    4% { transform: scale(1.16); box-shadow: 0 0 0 7px rgba(0,90,194,0.22); }
   }
   @media (prefers-reduced-motion: reduce) {
     .step-chase { animation: none; }
   }
   .texture-dot-light {
-    background-image: radial-gradient(rgba(98,166,255,0.16) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(0,107,230,0.16) 1px, transparent 1px);
     background-size: 20px 20px;
   }
   .texture-dot-dark {
@@ -236,9 +236,9 @@
         <a href="#signup"><button class="btn-primary rounded-full px-8 py-4 text-base font-bold w-full sm:w-auto">구직 시작하기</button></a>
       </div>
       <div class="fade-up-d2 mt-9 flex flex-wrap justify-center gap-x-6 gap-y-2 text-base text-grey-600 font-medium">
-        <span class="inline-flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>간단한 설문으로 시작</span>
-        <span class="inline-flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>추천 이유 제공</span>
-        <span class="inline-flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#006EFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>지역·근무조건 반영</span>
+        <span class="inline-flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#004799" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>간단한 설문으로 시작</span>
+        <span class="inline-flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#004799" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>추천 이유 제공</span>
+        <span class="inline-flex items-center gap-1.5"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#004799" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>지역·근무조건 반영</span>
       </div>
     </div>
   </div>
@@ -284,7 +284,7 @@
     <div class="relative w-20 h-20 flex items-center justify-center">
       <span class="ai-pulse absolute inset-0 rounded-full bg-indigo-400/30"></span>
       <span class="ai-pulse ai-pulse-d1 absolute inset-0 rounded-full bg-indigo-400/20"></span>
-      <div class="relative w-16 h-16 rounded-full bg-indigo-500 shadow-indigo-lg flex items-center justify-center text-navy-900 font-bold text-base">AI</div>
+      <div class="relative w-16 h-16 rounded-full bg-indigo-500 shadow-indigo-lg flex items-center justify-center text-white font-bold text-base">AI</div>
     </div>
   </div>
   <div class="max-w-6xl mx-auto px-6 lg:px-8 py-24 relative z-10">
@@ -354,7 +354,7 @@
       </div>
       <div class="reveal bg-indigo-500 rounded-2xl p-7">
         <span class="inline-block text-base font-bold text-indigo-700 bg-white rounded-full px-3 py-1 mb-5">추천 가능 직무</span>
-        <ul class="space-y-3 text-navy-900 text-base font-bold">
+        <ul class="space-y-3 text-white text-base font-bold">
           <li>고객지원</li>
           <li>사무·총무</li>
           <li>시설·운영관리</li>
